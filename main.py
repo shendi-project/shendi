@@ -19,11 +19,11 @@ def show_about():
     messagebox.showinfo("About shendi", "This is a project by AucaCoyan#9411. "
                                         "Contact him at Discord or you can check "
                                         "the github at: "
-                                        "https://github.com/AucaCoyan/shendi")
+                                        "https://github.com/shendi-project/shendi")
 
 
 def go_to_github():
-    webbrowser.open_new("https://github.com/AucaCoyan/shendi")
+    webbrowser.open_new("https://github.com/shendi-project/shendi")
 
 
 #       Creating menu bar
