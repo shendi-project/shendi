@@ -1,3 +1,4 @@
-﻿Race,Hit Points,Size,Speed,Ability Boosts,Ability Flaw,Languages
-Catfolk,8,Medium,25 feet,"Dexterity, Charisma, Free",Wisdom,bla
-Dwarf,10,Medium,20 feet,"Constitution, Wisdom, Free",Charisma,bla
+﻿Race,Traits,Hit Points,Size,Speed,Ability Boosts,Ability Flaw,Languages,Bonus Languages,Vision,Other
+Dwarf,"Dwarf and Humanoid",10,Medium,20 feet,"con, wis, free",cha,"Common, Dwarven","Gnomish, Goblin, Jotun, Orcish, Terran, Undercommon",Darkvision,"Clan Dagger"
+Elf,"Elf and Humanoid",6,Medium,30 feet,"dex, int, free",con,"Common, Elven","Celestial, Draconic, Gnoll, Gnomish, Goblin, Orcish, Sylvan","Low-Light Vision",nothing
+Gnome,"Gnome and Humaniod",8,Small,25 feet,"con, cha, free",str,"Common, Gnomish, Sylvan","Draconic, Dwarven, Elven, Goblin, Jotun, Orcish","Low-Light Vision",nothing
