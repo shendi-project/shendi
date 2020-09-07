@@ -23,14 +23,14 @@ def flaw(ability):
     return ability
 
 
-# Ability modifiers start at 10
+# Ability modifiers starts at 10
 str_ability = 10
 dex_ability = 10
 con_ability = 10
 int_ability = 10
 wis_ability = 10
 cha_ability = 10
-# Using the console to input until someone figures out how buttons work
+# using the console to input until someone figures out how buttons works
 str_boost = int(input("STR Boost?"))
 dex_boost = int(input("DEX Boost?"))
 con_boost = int(input("CON Boost?"))

@@ -10,19 +10,22 @@ expert = 4 + char_level
 master = 6 + char_level
 legendary = 8 + char_level
 
-# Converts user input into a variable I can use to calculate their skill modifier. There's probably a better way to do this.
+
+# Converts user input into a variable I can use to calculate their skill modifier.
+# There's probably a better way to do this.
 def skill_training(skill_prof_input):
-    if skill_prof_input=="U":
+    if skill_prof_input == "U":
         skill_prof = untrained
-    elif skill_prof_input=="T":
+    elif skill_prof_input == "T":
         skill_prof = trained
-    elif skill_prof_input=="E":
+    elif skill_prof_input == "E":
         skill_prof = expert
-    elif skill_prof_input=="M":
+    elif skill_prof_input == "M":
         skill_prof = master
-    elif skill_prof_input=="L":
+    elif skill_prof_input == "L":
         skill_prof = legendary
     return skill_prof
+
 
 # Using the console to input until someone figures out how buttons work, Electric Boogaloo.
 acrobatics_prof_input = input("Pick Acrobatics proficiency: U | T | E | M | L : ")
