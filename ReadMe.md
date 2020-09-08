@@ -16,6 +16,5 @@ Upcoming development:
 
 ## Other stuff to check
 
-###### There is an [API for Nethys](https://github.com/SargntSprinkles/Pathfinder-2e-API)
 It'd be cool if *shendi* could grab data from Nethys and parse it into the database. This would work only for the mechanics currently working on *shendi*, if there is any new mechanic, we will need to code that.
 Some kind of "PF-updater" that downloads everything and updates the database would also be good.
