@@ -11,7 +11,7 @@ root.config(bg="skyblue")
 top_frame = tk.Frame(root, width=200, height=400, bg='yellow')
 top_frame.grid(row=0, column=0, padx=10, pady=0)
 tabs_frame = ttk.Notebook(root, width=200, height=200)
-tabs_frame.grid(row=1, column=0, columnspan=3,padx=10, pady=10, sticky="w")
+tabs_frame.grid(row=1, column=0, columnspan=3, padx=10, pady=10, sticky="w")
 bottom_frame = tk.Frame(root, width=200, height=50, bg='green')
 bottom_frame.grid(row=2, column=0, padx=10, pady=10)
 
@@ -52,7 +52,7 @@ drop_races = tk.OptionMenu(top_frame, ancestry, *races).grid(row=1, column=1)
 
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
 background = tk.StringVar()
-available_backgrounds = ["", "Aerealist", "Animal Wrangler (Athletics)"]
+available_backgrounds = ["", "Aerialist", "Animal Wrangler (Athletics)"]
 drop_background = tk.OptionMenu(top_frame, background, *available_backgrounds).grid(row=2, column=1)
 
 tk.Label(top_frame, text="Character class:").grid(row=3, column=0)
@@ -62,7 +62,7 @@ drop_class = tk.OptionMenu(top_frame, PC_class, *available_classes).grid(row=3, 
 
 # Ability Labels and scores
 tk.Label(tabs_frame, text="Strength").grid(row=0, column=0, pady=10)
-tk.Label(tabs_frame, text=ability_scores.str_ability).grid(row=0, column=1, padx=20, pady= 10)
+tk.Label(tabs_frame, text=ability_scores.str_ability).grid(row=0, column=1, padx=20, pady=10)
 tk.Label(tabs_frame, text=ability_scores.str_mod).grid(row=0, column=2, pady=10)
 
 tk.Label(tabs_frame, text="Dexterity").grid(row=1, column=0, pady=10)
