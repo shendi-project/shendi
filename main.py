@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import menufunctions as mfx
 import ability_scores
+import JSONancestries as ancestries
 
 root = tk.Tk()
 root.title('shendi - Pathfinder 2nd Edition Character Builder')
@@ -46,7 +47,7 @@ pc_name_field = tk.Entry(top_frame, width=30).grid(row=0, column=1)
 tk.Label(top_frame, text="Character ancestry:").grid(row=1, column=0)
 ancestry = tk.StringVar()
 # todo: add an empty space FIRST, then the list of races
-races = ["", "Catfolk", "Dwarf", "Elf"]
+races = [ancestries.list_of_races]
 drop_races = tk.OptionMenu(top_frame, ancestry, *races).grid(row=1, column=1)
 # label for background
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
