@@ -8,31 +8,30 @@ root.title('shendi - Pathfinder 2nd Edition Character Builder')
 root.config(bg="skyblue")
 
 # The applications will consist on different Frames
+# The first frame includes the character name, ancestry, background and class
 top_frame = tk.Frame(root, width=200, height=400, bg='yellow')
 top_frame.grid(row=0, column=0, padx=10, pady=0)
+# The second frame includes abilities, and a couple of main buttons
 tabs_frame = ttk.Notebook(root, width=200, height=200)
 tabs_frame.grid(row=1, column=0, columnspan=3,padx=10, pady=10, sticky="w")
+# the bottom frame (currently empty) includes some information on what-to-do-next
 bottom_frame = tk.Frame(root, width=200, height=50, bg='green')
 bottom_frame.grid(row=2, column=0, padx=10, pady=10)
 
 
-# my_frame1 = tk.Frame(tabs_frame, width=500, height=500, bg="blue")
-# # my_frame1.pack(fill="both", expand=1)  ; it's better to use grid for all
-
-
 # todo: split this huge UI in more manageable files
 
-# Creating menu bar
+# Creation of the menu bar
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)
 
-# Creating File menu dropdown and items
+# Creation of File menu dropdown and items
 file_menu = tk.Menu(menu_bar, tearoff=0)  # tear off = 0 deletes a -- line on the menus
 menu_bar.add_cascade(label="File", menu=file_menu)
 file_menu.add_command(label="Open", command=mfx.open_file)
 
 
-# Creating Help menu dropdown and items
+# Creation of Help menu dropdown and items
 help_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command=mfx.show_about)
