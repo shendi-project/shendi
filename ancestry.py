@@ -1,4 +1,5 @@
 import csv
+# this is so pycharm doesn't freaks out
 global third_boost
 
 
@@ -17,7 +18,6 @@ def ancestry_boosts(ancestry):
         for row in csv_reader:
             # matches the ancestry you typed with the correct one in the ancestries file
             if ancestry == row["race"]:
-                # for now it just cares about boosts and flaws, will make the rest latter
                 first_boost = row["first boost"]
                 second_boost = row["second boost"]
                 third_boost = row["third boost"]
@@ -84,7 +84,6 @@ def ancestry_flaws(ancestry):
         for row in csv_reader:
             # matches the ancestry you typed with the correct one in the ancestries file
             if ancestry == row["race"]:
-                # for now it just cares about boosts and flaws, will make the rest latter
                 flaw = row["ability flaw"]
     # just add a +1 if you have the correct flaws
     if flaw == 'str':
@@ -101,3 +100,30 @@ def ancestry_flaws(ancestry):
         cha_flaw += 1
     # return the calculated flaws
     return [str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw]
+
+
+def ancestry_misc(ancestry):
+    # base senses, ancestries can modify this
+    senses = ['Vague Hearing', 'Vague Scent', 'Precise Vision']
+    with open('data/ancestries.csv', mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            # matches the ancestry you typed with the correct one in the ancestries file
+            if ancestry == row["race"]:
+                hit_points = int(row["hit points"])
+                speed = int(row["speed"])
+                traits = [row["first trait"], row["second trait"]]
+                if row["vision"] == "low-vision":
+                    senses[2] = "Precise Low-Light Vision"
+                if row["vision"] == "darkvision":
+                    senses[2] = "Precise Darkvision"
+                languages = [row["first language"], row["second language"]]
+                if row["third language"] != 'none':
+                    languages.append(row["third language"])
+    return hit_points, speed, traits, senses, languages
+
+
+# ancestry_misc test
+print(ancestry_misc("Dwarf"))
+print(ancestry_misc("Elf"))
+print(ancestry_misc("Gnome"))
