@@ -112,15 +112,19 @@ def ancestry_misc(ancestry):
             if ancestry == row["race"]:
                 hit_points = int(row["hit points"])
                 speed = int(row["speed"])
-                traits = [row["first trait"], row["second trait"]]
+                traits = [row["first trait"], row["second trait"], row["size"]]
+                languages = [row["first language"], row["second language"]]
                 if row["vision"] == "low-vision":
                     senses[2] = "Precise Low-Light Vision"
                 if row["vision"] == "darkvision":
                     senses[2] = "Precise Darkvision"
-                languages = [row["first language"], row["second language"]]
                 if row["third language"] != 'none':
                     languages.append(row["third language"])
-    return hit_points, speed, traits, senses, languages
+                if row["other"] != "none":
+                    other = row["other"]
+                else:
+                    other = ""
+    return hit_points, speed, traits, senses, languages, size, other
 
 
 # ancestry_misc test
