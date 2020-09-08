@@ -48,7 +48,7 @@ ancestry = tk.StringVar()
 # todo: add an empty space FIRST, then the list of races
 races = ["", "Catfolk", "Dwarf", "Elf"]
 drop_races = tk.OptionMenu(top_frame, ancestry, *races).grid(row=1, column=1)
-
+s
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
 background = tk.StringVar()
 available_backgrounds = ["", "Aerealist", "Animal Wrangler (Athletics)"]
