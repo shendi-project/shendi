@@ -1,7 +1,16 @@
 import csv
+global third_boost
 
 
-def ancestry_boosts(ancestry, str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost):
+def ancestry_boosts(ancestry):
+    # boosts start at 0
+    global third_boost
+    str_boost = 0
+    dex_boost = 0
+    con_boost = 0
+    int_boost = 0
+    wis_boost = 0
+    cha_boost = 0
     # open the ancestries file, reminder to fill that one
     with open('data/ancestries.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
@@ -39,8 +48,12 @@ def ancestry_boosts(ancestry, str_boost, dex_boost, con_boost, int_boost, wis_bo
         cha_boost += 1
 
     # the third boost, if it exists, is always a free one, this also needs a button
-    if third_boost == 'free':
+    while third_boost == 'free':
         third_boost = input("What do you want to do with your free boost?")
+        # you should only have one ancestry boost for each ability
+        if third_boost == first_boost or third_boost == second_boost:
+            print("You already have an ancestry boost in that ability score!")
+            third_boost = 'free'
     if third_boost == 'str':
         str_boost += 1
     if third_boost == 'dex':
@@ -57,7 +70,14 @@ def ancestry_boosts(ancestry, str_boost, dex_boost, con_boost, int_boost, wis_bo
     return [str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost]
 
 
-def ancestry_flaws(ancestry, str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw):
+def ancestry_flaws(ancestry):
+    # flaws start at 0
+    str_flaw = 0
+    dex_flaw = 0
+    con_flaw = 0
+    int_flaw = 0
+    wis_flaw = 0
+    cha_flaw = 0
     # open the ancestries file, reminder to fill that one
     with open('data/ancestries.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)

@@ -42,10 +42,8 @@ def main():
     global str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw
     # ask for ancestry, reminder to make a button latter
     race = input("What are you?")
-    boosts = [str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost]
-    flaws = [str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw]
-    boosts = ancestry.ancestry_boosts(race, str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost)
-    flaws = ancestry.ancestry_flaws(race, str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw)
+    str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost = ancestry.ancestry_boosts(race)
+    str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw = ancestry.ancestry_flaws(race)
 
     # Calculates final Ability Score
     while str_boost > 0:
@@ -106,16 +104,16 @@ if __name__ == '__main__':
 
 # values to test main.py
 
-# str_ability = 18
-# dex_ability = 15
-# con_ability = 14
-# int_ability = 13
-# wis_ability = 12
-# cha_ability = 10
+str_ability = 18
+dex_ability = 15
+con_ability = 14
+int_ability = 13
+wis_ability = 12
+cha_ability = 10
 
-# str_mod = mod_calc(str_ability)
-# dex_mod = mod_calc(dex_ability)
-# con_mod = mod_calc(con_ability)
-# int_mod = mod_calc(int_ability)
-# wis_mod = mod_calc(wis_ability)
-# cha_mod = mod_calc(cha_ability)`
+str_mod = mod_calc(str_ability)
+dex_mod = mod_calc(dex_ability)
+con_mod = mod_calc(con_ability)
+int_mod = mod_calc(int_ability)
+wis_mod = mod_calc(wis_ability)
+cha_mod = mod_calc(cha_ability)
