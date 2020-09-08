@@ -1,4 +1,5 @@
 import math
+import ancestry
 
 
 # Define all them functions
@@ -30,23 +31,19 @@ con_ability = 10
 int_ability = 10
 wis_ability = 10
 cha_ability = 10
+# define the boosts and flaws functions so it doesn't bothers the IDE
+global str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost
+global str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw
 
 
 def main():
-    # using the console to input until someone figures out how buttons works
     global str_ability, dex_ability, con_ability, int_ability, wis_ability, cha_ability
-    str_boost = int(input("STR Boost?"))
-    dex_boost = int(input("DEX Boost?"))
-    con_boost = int(input("CON Boost?"))
-    int_boost = int(input("INT Boost?"))
-    wis_boost = int(input("WIS Boost?"))
-    cha_boost = int(input("CHA Boost?"))
-    str_flaw = int(input("STR Flaw?"))
-    dex_flaw = int(input("DEX Flaw?"))
-    con_flaw = int(input("CON Flaw?"))
-    int_flaw = int(input("INT Flaw?"))
-    wis_flaw = int(input("WIS Flaw?"))
-    cha_flaw = int(input("CHA Flaw?"))
+    global str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost
+    global str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw
+    # ask for ancestry, reminder to make a button latter
+    race = input("What are you?")
+    str_boost, dex_boost, con_boost, int_boost, wis_boost, cha_boost = ancestry.ancestry_boosts(race)
+    str_flaw, dex_flaw, con_flaw, int_flaw, wis_flaw, cha_flaw = ancestry.ancestry_flaws(race)
 
     # Calculates final Ability Score
     while str_boost > 0:
@@ -120,5 +117,3 @@ con_mod = mod_calc(con_ability)
 int_mod = mod_calc(int_ability)
 wis_mod = mod_calc(wis_ability)
 cha_mod = mod_calc(cha_ability)
-
-

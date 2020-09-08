@@ -1,0 +1,4 @@
+﻿,race,first trait,second trait,hit points,size,speed,first boost,second boost,third boost,ability flaw,first language,second language,third language,bonus languages,vision,other
+,Dwarf,Dwarf,Humanoid,10,Medium,20 feet,con,wis,free,cha,Common,Dwarven,none,"Gnomish, Goblin, Jotun, Orcish, Terran, Undercommon",darkvision,"Clan Dagger"
+,Elf,Elf,Humanoid,6,Medium,30 feet,dex,int,free,con,Common,Elven,none,"Celestial, Draconic, Gnoll, Gnomish, Goblin, Orcish, Sylvan",lowvision,nothing
+,Gnome,Gnome,Humaniod,8,Small,25 feet,con,cha,free,str,Common,Gnomish,Sylvan,"Draconic, Dwarven, Elven, Goblin, Jotun, Orcish",lowvision,nothing
