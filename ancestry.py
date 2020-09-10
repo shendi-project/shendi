@@ -2,6 +2,14 @@ import csv
 # this is so pycharm doesn't freaks out
 global third_boost
 
+csv_ancestries_list = []
+
+with open('data/ancestries.csv', mode='r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    for row in csv_reader:
+        csv_ancestries_list.append(row)
+
+print(csv_ancestries_list)
 
 def ancestry_boosts(ancestry):
     # boosts start at 0
@@ -124,7 +132,7 @@ def ancestry_misc(ancestry):
                     other = row["other"]
                 else:
                     other = ""
-    return hit_points, speed, traits, senses, languages, size, other
+    return hit_points, speed, traits, senses, languages, # size, other
 
 
 # ancestry_misc test

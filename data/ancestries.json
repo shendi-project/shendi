@@ -1,0 +1,49 @@
+[
+  { "race": "Dwarf",
+    "NethysUrl": "https://2e.aonprd.com/Ancestries.aspx?ID=1",
+    "Source": "Core Rulebook pg. 35",
+    "traits" : ["Dwarf", "Humanoid"],
+    "Hit Points": 10,
+    "Size"  : "Medium",
+    "Speed"  : 20,
+    "Ability Boosts": ["Constitution", "Wisdom", "Free"],
+    "Ability Flaw": ["Charisma"],
+    "Languages": ["Common", "Dwarven", {
+      "Additional Language": [
+        "Gnomish",
+        "Goblin",
+        "Jotun",
+        "Orcish",
+        "Terran",
+        "Undercommon"
+      ]
+    }
+    ]
+  },
+ {
+   "race": "Elf",
+   "NethysUrl": "https://2e.aonprd.com/Ancestries.aspx?ID=2",
+   "Source": "Core Rulebook pg. 39",
+   "traits" : ["Elf", "Humanoid"],
+   "Hit Points": 6,
+   "Size"  : "Medium",
+   "Speed"  : 30,
+   "Ability Boosts": ["Dexterity", "Intelligence", "Free"],
+   "Ability Flaw": ["Constitution"],
+   "Languages": ["Common",
+     "Elven",
+     {
+       "Additional Language": [
+         "Celestial",
+         "Draconic",
+         "Gnoll",
+         "Gnomish",
+         "Goblin",
+         "Orcish",
+         "Sylvan"
+       ]
+     }
+   ]
+ }
+]
+
