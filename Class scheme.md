@@ -10,17 +10,51 @@ For the time being, I have these objectives before I hit the alpha, beta or pre-
 - Export fillable pdf.
 - Realtime editable buttons and selections
 
+
 ### Later, after alpha:
 - Level up
 
 Questions:
 
-* I'm not sure to create classes for everything, (for example for each Action, Trigger, Cast(Somatic, Verbal and Material). They seem very specific.
+* I'm not sure to create classes for everything, (for example for each Trigger, Cast(Somatic, Verbal and Material). They seem very specific.
+* Actions might be useful to define normal (123 actions, reactions, free actions) and especial actions (skill actions, support, raise shield, etc)
 * I could put an optional variable to receive the critical success, failure, etc
-* How can I put the information that can only store certain values? (for example (chaotic, neutral, lawful, good, evil) (untrained, trained, expert, master, legendary) (Tiny, Small, Medium, Large, etc) *maybe with enumerators*? 
+* How can I put the information that can only store certain values? (for example *maybe with enumerators*
+> (chaotic, neutral, lawful, good, evil)
+
+> (untrained, trained, expert, master, legendary) 
+
+> (Tiny, Small, Medium, Large, etc) 
+
+> (rarity: common, uncommon, rare, legendary) ? 
+
+> (Saving Throws)
+
+> (*Languages? Maybe?*)
+
+* Bonus and Penalties?
+* Class Proficiencies: how can I operate the proficiencies? (perception, Saving Throws, Skills, Attacks, Defenses, Class DC)
+* Class Features: Can I get any help here? Might be a especial class for "class features(NethysDB)
+* What about temporary hitpoints? should be a different type of hitpoints, stored on a different pool of HPs?
+* Does the class Character have a character sheet or is it a different object? (like, a different file on the OS)
+
+### Leftovers
+* Attack. I'm not doing a class for it, nor it needs nothing especial
+* Rounds. It's not a combat app yet.
 
 ### Things to investigate
 * Why spell.json has a "source" and "components" but they are equal?
+
+---
+# Random Methods or Functions, or things that don't need a Class
+* SpellAttackRoll(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int
+* SpellDC(AbilityModifier, ProficiencyBonus, , otherBonuses, penalties) = int 
+* roll Initiative(skill): int
+* Alignment = is_it_good evil neutral chaotic lawful?
+* AC Value
+
+---
+
 
 # Structure
 
@@ -32,8 +66,13 @@ Questions:
 
 # Classes:
 (Following [this list](https://2e.aonprd.com/Rules.aspx?ID=15))
+
+## Player
+- Name (or nickname)
+
 ## Character
 - name
+- level
 
 ## NethysDB
 - NethysURL
@@ -80,6 +119,7 @@ Questions:
 - *Optional Languages?*
 - *Especial race features?*
 
+--- 
 > A ver, los ability boosts se tienen que almacenar en algun lado, 
 
 > Y luego yo los elijo
@@ -96,21 +136,67 @@ Questions:
  
 ---
 
-# Thinktank copypasta - nothing decided downhere
 
-## PFclass(NethysDB)
+
+## Background(NethysDB)
+- Name
+- Description
+- AbilityBoosts
+- TrainedSkills
+- TrainedLores
+- Free(Skill)Feat
+
+## PF2_Class(NethysDB)
+- Name
+- Description
+- KeyAbility
+- Hitpoints
+- During Combat Encounters...
+- During Social Encounters...
+- While Exploring...
+- In Downtime...
+- YouMight: list of strings
+- OthersProbably: list of strings
+> Proficiencies
+> Class Features
+
+## Animal Companions(NethysDB)
+- Name (I mean race, or type of animal)
+- Nickname (the name you put it to your ~~pokemon~~ pet)
+(size, abilities, melee actions, ranged actions, damage, hitpoints, proficient skills, Senses, Speed, especial abilities, Advanced Maneuver)
+
+## Familiars(NethysDB)
+> Etc
+
+## Condition(NethysDB)
+- Name
+- Description
+- Group(Optional) {Attitudes, Death and Dying, Degree of Detection, Lowered Abilities, Senses}
+
+## Coin
+-Name
+-Value in gold coins
+> Any methods required?
 
 ## Feat(NethysDB)
+- Name
+- Level
+- Prerequisites
+- Benefits
+- Spoilers: boolean
 (especial traits for each skill feat, so you can filter general feats for each skill)
 
-## Skills
+## HitPoints
+- Maximum
+- Current
+- Temporary?
++ Damage
++ Heal
 
-## Armor class(NethysDB)
-- Value
 
-
-## Proficiency(NethysDB)
-- name
+## Skills(NethysDB)
+- Name
+- Key Ability
 
 ## Spell(NethysDB)
 - name
@@ -122,18 +208,7 @@ Questions:
 - duration
 - description
 
-## Alingment
-> is_it_good
+---
 
-> is_it_evil
-
-> is_it_neutral
-
-> is_it_chaotic
-
-> is_it_lawful
-
-
-# Random Methods or Functions
-* SpellAttackRoll(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int
-* SpellDC(AbilityModifier, ProficiencyBonus, , otherBonuses, penalties) = int 
+## Proficiency(NethysDB)
+- name
