@@ -237,7 +237,7 @@ Huge
 
 Gargantuan
 
-## Skills(NethysDB)
+## Skill(NethysDB)
 - Name
 - Key Ability
 
@@ -245,7 +245,6 @@ Gargantuan
 - name
 - type(Focus, Ritual, Spell, ¿Cantrip?) <this should be another enum>
 - Level
-- Cast (Somatic, verbal, Material) <this should be another enum>
 - action?
 - trigger
 - range
