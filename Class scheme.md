@@ -1,60 +1,48 @@
 # Shendi
 
-For the time being, I have these objectives before I hit the alpha, beta or pre-release versions (I'll decide that later).
+For the time being, I have these objectives.
 
-### Upcoming development:
-- Importing and exporting PF2 characters.
-- Manage homebrew content.
+### Upcoming development - Alpha stage:
 - Able to generate PC of level 1
+- Realtime editable buttons and selections
 - Export character in .Shendi format
 - Export fillable pdf.
-- Realtime editable buttons and selections
+- Manage homebrew content.
 
-
-### Later, after alpha:
+### Beta Stage:
 - Level up
+- Parse Nethys and load up all the data
 
-Questions:
+### After 1.0 Release:
+- Animal Companions and familiars
+- Monsters
+> #### Animal Companions(NethysDB)
+> - Name (I mean race, or type of animal)
+> - Nickname (the name you put it to your ~~pokemon~~ pet)
+> - (size, abilities, melee actions, ranged actions, damage, hitpoints, proficient skills, Senses, Speed, especial abilities, Advanced Maneuver)
 
-* I'm not sure to create classes for everything, (for example for each Trigger, Cast(Somatic, Verbal and Material). They seem very specific.
-* Actions might be useful to define normal (123 actions, reactions, free actions) and especial actions (skill actions, support, raise shield, etc)
-* I could put an optional variable to receive the critical success, failure, etc
-* How can I put the information that can only store certain values? (for example *maybe with enumerators*
-> (chaotic, neutral, lawful, good, evil)
+- PlayMode
+> - Build an enumerator / optional variable to receive the critical success, success failure and critical failure. So I can jump up or down depending on the number rolled. 
+> - Bonuses and penalties, 4 boxes for each, and pick the highest or lowest possible. (Although it would be cool to show it or pick one of the available list)
+> * Attacks
+> * Rounds and turns (It's not a combat app yet)
+> * roll Initiative(skill): int
 
-> (untrained, trained, expert, master, legendary) 
 
-> (Tiny, Small, Medium, Large, etc) 
+# Questions:
 
-> (rarity: common, uncommon, rare, legendary) ? 
-
-> (Saving Throws)
-
-> (*Languages? Maybe?*)
-
-* Bonus and Penalties?
-* Class Proficiencies: how can I operate the proficiencies? (perception, Saving Throws, Skills, Attacks, Defenses, Class DC)
+* Should Actions have a boolean for the skill-action true/false?
 * Class Features: Can I get any help here? Might be a especial class for "class features(NethysDB)
-* What about temporary hitpoints? should be a different type of hitpoints, stored on a different pool of HPs?
-* Does the class Character have a character sheet or is it a different object? (like, a different file on the OS)
-
-### Leftovers
-* Attack. I'm not doing a class for it, nor it needs nothing especial
-* Rounds. It's not a combat app yet.
 
 ### Things to investigate
 * Why spell.json has a "source" and "components" but they are equal?
 
----
-# Random Methods or Functions, or things that don't need a Class
-* SpellAttackRoll(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int
-* SpellDC(AbilityModifier, ProficiencyBonus, , otherBonuses, penalties) = int 
-* roll Initiative(skill): int
-* Alignment = is_it_good evil neutral chaotic lawful?
-* AC Value
+---------------------------------------------------------------------------
+# Random Methods or Functions of things that idk where they go
+* SpellAttackRoll(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int (Idk if this goes into PF2_class or into character)
+* SpellDC(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int 
 
----
-
+---------------------------------------------------------------------------
 
 # Structure
 
@@ -62,33 +50,28 @@ Questions:
 * variables of that class: data type
 > method
 
----
+---------------------------------------------------------------------------
 
 # Classes:
 (Following [this list](https://2e.aonprd.com/Rules.aspx?ID=15))
 
-## Player
-- Name (or nickname)
-
-## Character
-- name
-- level
 
 ## NethysDB
 - NethysURL
 - Source book
 - Source book page
 
-## Trait(NethysDB):
-- description
-- type (untyped, Monster, Equipment, etc)
+## AC
+- value
++ various methods
++ raiseShield()
++ lowerShield()
++ flatfooted()
 
-## Action
+## Action(NethysDB)
 - name
-- Quantity? maybe?
-
-## Trigger
-- description
+- Description
+- Quantity of actions/reaction/free action (this should be a subtype of an action enumerator class)
 
 ## Ability Score(NethysDB)
 - name
@@ -97,10 +80,28 @@ Questions:
 
 > boost
 
->  flaw
+> flaw
 
-## Language
-- name
+## ((enumeration)) Alignment
+Lawful Good
+
+Neutral Good
+
+Chaotic Good
+
+Lawful Neutral
+
+True Neutral
+
+Chaotic Neutral
+
+Lawful Evil
+
+Neutral Evil
+
+Chaotic Evil
+
++ Is it("lawful", object) for each alignment
 
 ## Ancestry(NethysDB)
 - name: str
@@ -119,7 +120,7 @@ Questions:
 - *Optional Languages?*
 - *Especial race features?*
 
---- 
+---------------------------------------------------------------------------
 > A ver, los ability boosts se tienen que almacenar en algun lado, 
 
 > Y luego yo los elijo
@@ -134,8 +135,7 @@ Questions:
 > Además, un abiboost tiene una lista en la cual vos podés elegir (luego corres una funcion para verificar que todo ande bien.)
  
  
----
-
+---------------------------------------------------------------------------
 
 
 ## Background(NethysDB)
@@ -145,6 +145,15 @@ Questions:
 - TrainedSkills
 - TrainedLores
 - Free(Skill)Feat
+
+
+## PlayerCharacter
+- name
+- level
+- ClassDC: int (it's here because some classes have options to have either X or Y ability modifier, so it's a thing of a character, not of a PF2_Class)
++ exportFile()
++ exportFillablePDF()
++ exportRoll20()
 
 ## PF2_Class(NethysDB)
 - Name
@@ -160,13 +169,17 @@ Questions:
 > Proficiencies
 > Class Features
 
-## Animal Companions(NethysDB)
-- Name (I mean race, or type of animal)
-- Nickname (the name you put it to your ~~pokemon~~ pet)
-(size, abilities, melee actions, ranged actions, damage, hitpoints, proficient skills, Senses, Speed, especial abilities, Advanced Maneuver)
+
 
 ## Familiars(NethysDB)
 > Etc
+
+## ((Enumerator)) CastComponents
+Somatic
+
+Verbal
+
+Material
 
 ## Condition(NethysDB)
 - Name
@@ -183,16 +196,68 @@ Questions:
 - Level
 - Prerequisites
 - Benefits
+- Trigger
 - Spoilers: boolean
 (especial traits for each skill feat, so you can filter general feats for each skill)
+
+## HeroPoints(NethysDB)
+- Maximum
+- Current
 
 ## HitPoints
 - Maximum
 - Current
-- Temporary?
+> Temporary hitpoints?
++ Half()
 + Damage
+> Do resistance goes here?
 + Heal
 
+## ((enumeration)) Language
+- names of languages
+
+## Player
+- Name (or nickname)
+
+## ((Enumeration)) Proficiency
+untrained
+
+trained
+
+expert
+
+master
+
+legendary
+
+## ((enumeration)) Rarity
+common
+
+uncommon
+
+rare
+
+legendary 
+
+## ((enumeration)) Saving Throw
+Fortitude
+
+Reflex
+
+Will
+
+## ((enumeration)) Size
+Tiny
+
+Small
+
+Medium
+
+Large
+
+Huge
+
+Gargantuan
 
 ## Skills(NethysDB)
 - Name
@@ -200,15 +265,19 @@ Questions:
 
 ## Spell(NethysDB)
 - name
-- type(Focus, Ritual, Spell, ¿Cantrip?)
+- type(Focus, Ritual, Spell, ¿Cantrip?) <this should be another enum>
 - Level
-- Cast (Somatic, verbal, Material)
+- Cast (Somatic, verbal, Material) <this should be another enum>
+- action?
+- trigger
 - range
 - targets
 - duration
 - description
 
----
-
-## Proficiency(NethysDB)
+## ((Enumerator)) TraitType:
 - name
+
+## ((Enumerator)) Trait(NethysDB, Type Trait):
+- name
+- description
