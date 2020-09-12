@@ -20,27 +20,23 @@ For the time being, I have these objectives.
 > - Name (I mean race, or type of animal)
 > - Nickname (the name you put it to your ~~pokemon~~ pet)
 > - (size, abilities, melee actions, ranged actions, damage, hitpoints, proficient skills, Senses, Speed, especial abilities, Advanced Maneuver)
-
+> #### Familiars(NethysDB)
+> 
 - PlayMode
+> - Actions will have a boolean to know if the skill-action can be used trained/untrained
 > - Build an enumerator / optional variable to receive the critical success, success failure and critical failure. So I can jump up or down depending on the number rolled. 
 > - Bonuses and penalties, 4 boxes for each, and pick the highest or lowest possible. (Although it would be cool to show it or pick one of the available list)
 > * Attacks
 > * Rounds and turns (It's not a combat app yet)
 > * roll Initiative(skill): int
 
-
+---------------------------------------------------------------------------
 # Questions:
 
-* Should Actions have a boolean for the skill-action true/false?
 * Class Features: Can I get any help here? Might be a especial class for "class features(NethysDB)
 
 ### Things to investigate
 * Why spell.json has a "source" and "components" but they are equal?
-
----------------------------------------------------------------------------
-# Random Methods or Functions of things that idk where they go
-* SpellAttackRoll(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int (Idk if this goes into PF2_class or into character)
-* SpellDC(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int 
 
 ---------------------------------------------------------------------------
 
@@ -48,7 +44,7 @@ For the time being, I have these objectives.
 
 ## Name of a class (Parent class *-if any-*)
 * variables of that class: data type
-> method
++ method
 
 ---------------------------------------------------------------------------
 
@@ -76,11 +72,8 @@ For the time being, I have these objectives.
 ## Ability Score(NethysDB)
 - name
 - number
-> modifier
++ modifier
 
-> boost
-
-> flaw
 
 ## ((enumeration)) Alignment
 Lawful Good
@@ -116,32 +109,17 @@ Chaotic Evil
 - Hitpoints: int
 - size (might be a class?)
 - speed: int
-- *AbilityBoosts & Flaws?*
+- AbilityBoosts1:
+- AbilityBoosts2:
+- AbilityFlaw:
 - *Optional Languages?*
 - *Especial race features?*
-
----------------------------------------------------------------------------
-> A ver, los ability boosts se tienen que almacenar en algun lado, 
-
-> Y luego yo los elijo
-
-> Para pasar a ser métodos de class: Ability
-
-> Pero como los sumo? y como restrinjo los existentes?
-> Tengo 3 casos de Abi boost
-> * Te doy un abi boost en X caracteristica
-> * Te doy a elegir un abiboost entre estas [] caracteristicas
-
-> Además, un abiboost tiene una lista en la cual vos podés elegir (luego corres una funcion para verificar que todo ande bien.)
- 
- 
----------------------------------------------------------------------------
 
 
 ## Background(NethysDB)
 - Name
 - Description
-- AbilityBoosts
+- AbilityBoost1
 - TrainedSkills
 - TrainedLores
 - Free(Skill)Feat
@@ -151,6 +129,11 @@ Chaotic Evil
 - name
 - level
 - ClassDC: int (it's here because some classes have options to have either X or Y ability modifier, so it's a thing of a character, not of a PF2_Class)
+
++ boost
++ flaw
++ SpellAttackRoll(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int (Idk if this goes into PF2_class or into character)
++ SpellDC(AbilityModifier, ProficiencyBonus, otherBonuses, penalties) = int 
 + exportFile()
 + exportFillablePDF()
 + exportRoll20()
@@ -166,13 +149,8 @@ Chaotic Evil
 - In Downtime...
 - YouMight: list of strings
 - OthersProbably: list of strings
-> Proficiencies
 > Class Features
 
-
-
-## Familiars(NethysDB)
-> Etc
 
 ## ((Enumerator)) CastComponents
 Somatic
