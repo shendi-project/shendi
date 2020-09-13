@@ -1,34 +1,4 @@
-# Shendi
-
-For the time being, I have these objectives.
-
-### Upcoming development - Alpha stage:
-- Able to generate PC of level 1
-- Realtime editable buttons and selections
-- Export character in .Shendi format
-- Export fillable pdf.
-- Manage homebrew content.
-
-### Beta Stage:
-- Level up
-- Parse Nethys and load up all the data
-
-### After 1.0 Release:
-- Animal Companions and familiars
-- Monsters
-> #### Animal Companions(NethysDB)
-> - Name (I mean race, or type of animal)
-> - Nickname (the name you put it to your ~~pokemon~~ pet)
-> - (size, abilities, melee actions, ranged actions, damage, hitpoints, proficient skills, Senses, Speed, especial abilities, Advanced Maneuver)
-> #### Familiars(NethysDB)
-> 
-- PlayMode
-> - Actions will have a boolean to know if the skill-action can be used trained/untrained
-> - Build an enumerator / optional variable to receive the critical success, success failure and critical failure. So I can jump up or down depending on the number rolled. 
-> - Bonuses and penalties, 4 boxes for each, and pick the highest or lowest possible. (Although it would be cool to show it or pick one of the available list)
-> * Attacks
-> * Rounds and turns (It's not a combat app yet)
-> * roll Initiative(skill): int
+# Shendi Class Scheme
 
 ---------------------------------------------------------------------------
 # Questions:
@@ -107,7 +77,6 @@ Chaotic Evil
 - Adventurers
 - Names: dict of strings, male and female
 - Hitpoints: int
-- size (might be a class?)
 - speed: int
 - AbilityBoosts1:
 - AbilityBoosts2:
