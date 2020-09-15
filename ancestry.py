@@ -9,7 +9,8 @@ with open('data/ancestries.csv', mode='r') as csv_file:
     for row in csv_reader:
         csv_ancestries_list.append(row)
 
-print(csv_ancestries_list)
+# Test print if csv successfully loaded 
+# print(csv_ancestries_list)
 
 def ancestry_boosts(ancestry):
     # boosts start at 0
@@ -136,6 +137,6 @@ def ancestry_misc(ancestry):
 
 
 # ancestry_misc test
-print(ancestry_misc("Dwarf"))
-print(ancestry_misc("Elf"))
-print(ancestry_misc("Gnome"))
+# print(ancestry_misc("Dwarf"))
+# print(ancestry_misc("Elf"))
+# print(ancestry_misc("Gnome"))

@@ -9,3 +9,6 @@ class AC:
     def lowerShield(self):
         self.value = self.value - 2
         return self.value
+
+# values to test main.py
+value = 16
