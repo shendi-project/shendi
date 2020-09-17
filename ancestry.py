@@ -1,4 +1,5 @@
 import csv
+
 # this is so pycharm doesn't freaks out
 global third_boost
 

@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import menufunctions as mfx
-import AbilityScore
-import JSONancestries as Ancestries
+import abilities
+import ancestries
 import skills
 import ac
 import hitpoints
@@ -62,7 +62,7 @@ pc_name_field = tk.Entry(top_frame, width=30).grid(row=0, column=1)
 tk.Label(top_frame, text="Character ancestry:").grid(row=1, column=0)
 ancestry = tk.StringVar()
 # todo: add an empty space FIRST, then the list of races
-races = Ancestries.list_of_races
+races = ancestries.list_of_ancestries
 drop_races = tk.OptionMenu(top_frame, ancestry, *races).grid(row=1, column=1)
 # label for background
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
@@ -95,19 +95,19 @@ tk.Label(ability_frame, text="Intelligence").grid(row=4, column=0, pady=10)
 tk.Label(ability_frame, text="Wisdom").grid(row=5, column=0, pady=10)
 tk.Label(ability_frame, text="Charisma").grid(row=6, column=0, pady=10)
 # Ability scores
-tk.Label(ability_frame, text=AbilityScore.Strength.score).grid(row=1, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Dexterity.score).grid(row=2, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Constitution.score).grid(row=3, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Intelligence.score).grid(row=4, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Wisdom.score).grid(row=5, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Charisma.score).grid(row=6, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Strength.score).grid(row=1, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Dexterity.score).grid(row=2, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Constitution.score).grid(row=3, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Intelligence.score).grid(row=4, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Wisdom.score).grid(row=5, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Charisma.score).grid(row=6, column=1, padx=20, pady=10)
 # Ability mods
-tk.Label(ability_frame, text=AbilityScore.Strength.getModifier()).grid(row=1, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Dexterity.getModifier()).grid(row=2, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Constitution.getModifier()).grid(row=3, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Intelligence.getModifier()).grid(row=4, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Wisdom.getModifier()).grid(row=5, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Charisma.getModifier()).grid(row=6, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Strength.getModifier()).grid(row=1, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Dexterity.getModifier()).grid(row=2, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Constitution.getModifier()).grid(row=3, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Intelligence.getModifier()).grid(row=4, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Wisdom.getModifier()).grid(row=5, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Charisma.getModifier()).grid(row=6, column=2, pady=10)
 
 # Class DC
 # TODO: <<<<<<<<<<<<<<<<<<<<<< I don't like how this is showed >>>>>>>>>>>>>>>>>>>>>

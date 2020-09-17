@@ -1,12 +1,9 @@
 import json
-import NethysDB
+import nethysdb
 
-class Ancestry(NethysDB.NethysDB):
-    def __init__(self, name, NethysUrl, Source, Page, description, YouMight, OthersProbably, PhysicalDescription, Society, AlignmentAndReligion, Adventurers, Names, Hitpoints, Size, Speed, AbilityBoost1, AbilityBoost2, AbilityFlaw):
-        self.name = name
-        # self.NethysURL = NethysUrl
-        # self.SourceBook = Source
-        # self.Page = Page
+class Ancestry(nethysdb.NethysDB):
+    def __init__(self, link, SourceBook, Page, description, YouMight, OthersProbably, PhysicalDescription, Society, AlignmentAndReligion, Adventurers, Names, Hitpoints, Size, Speed, AbilityBoost1, AbilityBoost2, AbilityFlaw):
+        super().__init__(link, SourceBook, Page)
         self.description = description
         self.YouMight = YouMight
         self.OthersProbably = OthersProbably
@@ -26,23 +23,20 @@ class Ancestry(NethysDB.NethysDB):
 with open('data/ancestries.json') as f:
     data = json.load(f)
 
-list_of_races = []
+list_of_ancestries = []
 
-# append races on the list
+# append ancestries on the list
 for index, ancestry in enumerate(data['ancestries']):
-    list_of_races.append(data['ancestries'][index]['race'])
+    list_of_ancestries.append(data['ancestries'][index]['race'])
 
+
+list_of_ancestry_classes = []
 
 def main():
-    # test print
-    # print(list_of_races)
-    # print(list_of_races[0])
-    # print(list_of_races[1])
-
     # build an instance of Ancestry class for each element
     for ancestry in data['ancestries']:
         name = ancestry['race']
-        NethysURL = ancestry['NethysUrl']
+        link = ancestry['NethysUrl']
         SourceBook = ancestry['Source']
         Page = ancestry['Page']
         description = ancestry['Description']
@@ -59,8 +53,13 @@ def main():
         AbilityBoost1 = ancestry['Ability Boosts'][0]
         AbilityBoost2 = ancestry['Ability Boosts'][1]
         AbilityFlaw = ancestry['Ability Flaw'][0]
-        # print(ancestry['race'])
+        
+        name = Ancestry(link, SourceBook, Page, description, YouMight, OthersProbably, PhysicalDescription, Society, AlignmentAndReligion, Adventurers, Names, Hitpoints, Size, Speed, AbilityBoost1, AbilityBoost2, AbilityFlaw)
+        print(link)
+        # list_of_ancestries.append(ancestry['race'])
         
 
 if __name__ == '__main__':
     main()
+    # print(list_of_ancestry_classes)
+    
