@@ -61,15 +61,15 @@ tk.Label(top_frame, text="Character name:").grid(row=0, column=0)
 pc_name_field = tk.Entry(top_frame, width=30).grid(row=0, column=1)
 # label for ancestry
 tk.Label(top_frame, text="Character ancestry:").grid(row=1, column=0)
-ancestry = tk.StringVar()
+PC_ancestry = tk.StringVar()
 # todo: add an empty space FIRST, then the list of races
-available_races = ancestries.list_of_ancestries
-drop_races = tk.OptionMenu(top_frame, ancestry, *available_races).grid(row=1, column=1)
+available_ancestries = ancestries.list_of_ancestries
+drop_ancestries = tk.OptionMenu(top_frame, PC_ancestry, *available_ancestries).grid(row=1, column=1)
 # label for background
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
-background = tk.StringVar()
+PC_background = tk.StringVar()
 available_backgrounds = backgrounds.list_of_backgrounds
-drop_background = tk.OptionMenu(top_frame, background, *available_backgrounds).grid(row=2, column=1)
+drop_background = tk.OptionMenu(top_frame, PC_background, *available_backgrounds).grid(row=2, column=1)
 # label for class
 tk.Label(top_frame, text="Character class:").grid(row=3, column=0)
 PC_class = tk.StringVar()
@@ -127,9 +127,29 @@ tk.Label(proficiencies_frame, text="Trained").grid(row=1, column=1, padx=10)
 tk.Label(proficiencies_frame, text="Expert").grid(row=2, column=1, padx=10)
 tk.Label(proficiencies_frame, text="Master").grid(row=3, column=1, padx=10)
 
+
+def select_abi_boost():
+    get_ancestry = PC_ancestry.get()
+    get_background = PC_background.get()
+    get_class = PC_class.get()
+    print(get_ancestry, get_background, get_class)
+
+    select_abi_window = tk.Toplevel()
+    tk.Label(select_abi_window, text="Pick every ability boost from each origin").grid(row=0, column=0)
+    ancestry_group = tk.LabelFrame(select_abi_window, text="Ancestry")
+    ancestry_group.grid(row=1, column=0) # BUG: apparently you cant use .grid on a LabelFrame after a defintion, you need to set it on another line
+    tk.Label(ancestry_group, text="test").grid(row=1, column=0)
+    # Radio variable
+    gender = tk.IntVar()
+    tk.Radiobutton(ancestry_group, text="first", variable = gender, value=0).grid(row=0, column=0)
+    tk.Radiobutton(ancestry_group, text="second", variable = gender, value=1).grid(row=1, column=0)
+    
+    
+    # messagebox.showerror('Message title', 'Duplicate ability boosts from the same origin selected')
+
 # --------------------------------------------------------- mid frame
 # Buttons on the left of abilities scores
-abi_boost_selection = tk.Button(mid_frame, text="Select ability boosts", command=mfx.select_abi_boost)
+abi_boost_selection = tk.Button(mid_frame, text="Select ability boosts", command=select_abi_boost)
 abi_boost_selection.grid(row=0, column=0, columnspan=4, padx=50)
 skills_selection = tk.Button(mid_frame, text="Select trained skills", command=mfx.select_skills)
 skills_selection.grid(row=1, column=0, columnspan=4, padx=50)

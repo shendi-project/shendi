@@ -1,4 +1,4 @@
-import JSONancestries
+import ancestries
 
 def test_list_of_ancestries():
     pass
