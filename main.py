@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 import menufunctions as mfx
-import AbilityScore
-import JSONancestries as Ancestries
+import abilities
+import ancestries
+import backgrounds
 import skills
 import ac
 import hitpoints
-import SavingThrow
+import savingthrow
 
 
 root = tk.Tk()
@@ -60,15 +61,15 @@ tk.Label(top_frame, text="Character name:").grid(row=0, column=0)
 pc_name_field = tk.Entry(top_frame, width=30).grid(row=0, column=1)
 # label for ancestry
 tk.Label(top_frame, text="Character ancestry:").grid(row=1, column=0)
-ancestry = tk.StringVar()
+PC_ancestry = tk.StringVar()
 # todo: add an empty space FIRST, then the list of races
-races = Ancestries.list_of_races
-drop_races = tk.OptionMenu(top_frame, ancestry, *races).grid(row=1, column=1)
+available_ancestries = ancestries.list_of_ancestries
+drop_ancestries = tk.OptionMenu(top_frame, PC_ancestry, *available_ancestries).grid(row=1, column=1)
 # label for background
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
-background = tk.StringVar()
-available_backgrounds = ["", "Aerialist", "Animal Wrangler (Athletics)"]
-drop_background = tk.OptionMenu(top_frame, background, *available_backgrounds).grid(row=2, column=1)
+PC_background = tk.StringVar()
+available_backgrounds = backgrounds.list_of_backgrounds
+drop_background = tk.OptionMenu(top_frame, PC_background, *available_backgrounds).grid(row=2, column=1)
 # label for class
 tk.Label(top_frame, text="Character class:").grid(row=3, column=0)
 PC_class = tk.StringVar()
@@ -95,19 +96,19 @@ tk.Label(ability_frame, text="Intelligence").grid(row=4, column=0, pady=10)
 tk.Label(ability_frame, text="Wisdom").grid(row=5, column=0, pady=10)
 tk.Label(ability_frame, text="Charisma").grid(row=6, column=0, pady=10)
 # Ability scores
-tk.Label(ability_frame, text=AbilityScore.Strength.score).grid(row=1, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Dexterity.score).grid(row=2, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Constitution.score).grid(row=3, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Intelligence.score).grid(row=4, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Wisdom.score).grid(row=5, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Charisma.score).grid(row=6, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Strength.score).grid(row=1, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Dexterity.score).grid(row=2, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Constitution.score).grid(row=3, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Intelligence.score).grid(row=4, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Wisdom.score).grid(row=5, column=1, padx=20, pady=10)
+tk.Label(ability_frame, text=abilities.Charisma.score).grid(row=6, column=1, padx=20, pady=10)
 # Ability mods
-tk.Label(ability_frame, text=AbilityScore.Strength.getModifier()).grid(row=1, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Dexterity.getModifier()).grid(row=2, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Constitution.getModifier()).grid(row=3, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Intelligence.getModifier()).grid(row=4, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Wisdom.getModifier()).grid(row=5, column=2, pady=10)
-tk.Label(ability_frame, text=AbilityScore.Charisma.getModifier()).grid(row=6, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Strength.getModifier()).grid(row=1, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Dexterity.getModifier()).grid(row=2, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Constitution.getModifier()).grid(row=3, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Intelligence.getModifier()).grid(row=4, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Wisdom.getModifier()).grid(row=5, column=2, pady=10)
+tk.Label(ability_frame, text=abilities.Charisma.getModifier()).grid(row=6, column=2, pady=10)
 
 # Class DC
 # TODO: <<<<<<<<<<<<<<<<<<<<<< I don't like how this is showed >>>>>>>>>>>>>>>>>>>>>
@@ -126,9 +127,29 @@ tk.Label(proficiencies_frame, text="Trained").grid(row=1, column=1, padx=10)
 tk.Label(proficiencies_frame, text="Expert").grid(row=2, column=1, padx=10)
 tk.Label(proficiencies_frame, text="Master").grid(row=3, column=1, padx=10)
 
+
+def select_abi_boost():
+    get_ancestry = PC_ancestry.get()
+    get_background = PC_background.get()
+    get_class = PC_class.get()
+    print(get_ancestry, get_background, get_class)
+
+    select_abi_window = tk.Toplevel()
+    tk.Label(select_abi_window, text="Pick every ability boost from each origin").grid(row=0, column=0)
+    ancestry_group = tk.LabelFrame(select_abi_window, text="Ancestry")
+    ancestry_group.grid(row=1, column=0) # BUG: apparently you cant use .grid on a LabelFrame after a defintion, you need to set it on another line
+    tk.Label(ancestry_group, text="test").grid(row=1, column=0)
+    # Radio variable
+    gender = tk.IntVar()
+    tk.Radiobutton(ancestry_group, text="first", variable = gender, value=0).grid(row=0, column=0)
+    tk.Radiobutton(ancestry_group, text="second", variable = gender, value=1).grid(row=1, column=0)
+    
+    
+    # messagebox.showerror('Message title', 'Duplicate ability boosts from the same origin selected')
+
 # --------------------------------------------------------- mid frame
 # Buttons on the left of abilities scores
-abi_boost_selection = tk.Button(mid_frame, text="Select ability boosts", command=mfx.select_abi_boost)
+abi_boost_selection = tk.Button(mid_frame, text="Select ability boosts", command=select_abi_boost)
 abi_boost_selection.grid(row=0, column=0, columnspan=4, padx=50)
 skills_selection = tk.Button(mid_frame, text="Select trained skills", command=mfx.select_skills)
 skills_selection.grid(row=1, column=0, columnspan=4, padx=50)
@@ -151,9 +172,9 @@ tk.Label(mid_frame, text="Fortitude (Con) ").grid(row=5, column=0, columnspan=2)
 tk.Label(mid_frame, text="Reflex (Dex) ").grid(row=6, column=0, columnspan=2)
 tk.Label(mid_frame, text="Will (Wis) ").grid(row=7, column=0, columnspan=2)
 # Mods
-tk.Label(mid_frame, text=SavingThrow.Fortitude).grid(row=5, column=2, columnspan=2)
-tk.Label(mid_frame, text=SavingThrow.Reflex).grid(row=6, column=2, columnspan=2)
-tk.Label(mid_frame, text=SavingThrow.Will).grid(row=7, column=2, columnspan=2)
+tk.Label(mid_frame, text=savingthrow.Fortitude).grid(row=5, column=2, columnspan=2)
+tk.Label(mid_frame, text=savingthrow.Reflex).grid(row=6, column=2, columnspan=2)
+tk.Label(mid_frame, text=savingthrow.Will).grid(row=7, column=2, columnspan=2)
 
 # --- Perception
 tk.Label(mid_frame, text="Perception").grid(row=8, column=0, columnspan=4)

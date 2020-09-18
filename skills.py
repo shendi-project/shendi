@@ -1,26 +1,25 @@
-from tkinter.constants import CHAR
-import ability_scores
+import abilities
 
 # Coded variables to test main.py
 char_level = 1
-acrobatics_mod = ability_scores.dex_mod
-arcana_mod = ability_scores.int_mod
-athletics_mod = ability_scores.str_mod
-crafting_mod = ability_scores.int_mod
-deception_mod = ability_scores.cha_mod
-diplomacy_mod = ability_scores.cha_mod
-intimidation_mod = ability_scores.cha_mod
-medicine_mod = ability_scores.wis_mod
-nature_mod = ability_scores.wis_mod
-occultism_mod = ability_scores.int_mod
-performance_mod = ability_scores.cha_mod
-religion_mod = ability_scores.wis_mod
-society_mod = ability_scores.int_mod
-stealth_mod = ability_scores.dex_mod
-survival_mod = ability_scores.wis_mod
-thievery_mod = ability_scores.dex_mod
+acrobatics_mod = abilities.Dexterity.getModifier()
+arcana_mod = abilities.Intelligence.getModifier()
+athletics_mod = abilities.Strength.getModifier()
+crafting_mod = abilities.Intelligence.getModifier()
+deception_mod = abilities.Charisma.getModifier()
+diplomacy_mod = abilities.Charisma.getModifier()
+intimidation_mod = abilities.Charisma.getModifier()
+medicine_mod = abilities.Wisdom.getModifier()
+nature_mod = abilities.Wisdom.getModifier()
+occultism_mod = abilities.Intelligence.getModifier()
+performance_mod = abilities.Charisma.getModifier()
+religion_mod = abilities.Wisdom.getModifier()
+society_mod = abilities.Intelligence.getModifier()
+stealth_mod = abilities.Dexterity.getModifier()
+survival_mod = abilities.Wisdom.getModifier()
+thievery_mod = abilities.Dexterity.getModifier()
 
-perception_mod = ability_scores.wis_mod
+perception_mod = abilities.Wisdom.getModifier()
 
 acrobatics_proficiency = "trained"
 arcana_proficiency = "untrained"
@@ -105,37 +104,37 @@ def main():
     thievery_prof_input = input("Pick Thievery proficiency: U | T | E | M | L : ")
 
     # Calculating Skill Modifiers.
-    acrobatics_mod = ability_scores.dex_mod + skill_training(acrobatics_prof_input)
+    acrobatics_mod = abilities.Dexterity.getModifier() + skill_training(acrobatics_prof_input)
     print("Acrobatics Modifier: " + str(acrobatics_mod))
-    arcana_mod = ability_scores.int_mod + skill_training(arcana_prof_input)
+    arcana_mod = abilities.Intelligence.getModifier() + skill_training(arcana_prof_input)
     print("Arcana Modifier: " + str(arcana_mod))
-    athletics_mod = ability_scores.str_mod + skill_training(athletics_prof_input)
+    athletics_mod = abilities.Strength.getModifier() + skill_training(athletics_prof_input)
     print("Athletics Modifier: " + str(athletics_mod))
-    crafting_mod = ability_scores.int_mod + skill_training(crafting_prof_input)
+    crafting_mod = abilities.Intelligence.getModifier() + skill_training(crafting_prof_input)
     print("Crafting Modifier: " + str(crafting_mod))
-    deception_mod = ability_scores.cha_mod + skill_training(deception_prof_input)
+    deception_mod = abilities.Charisma.getModifier() + skill_training(deception_prof_input)
     print("Deception Modifier: " + str(deception_mod))
-    diplomacy_mod = ability_scores.cha_mod + skill_training(diplomacy_prof_input)
+    diplomacy_mod = abilities.Charisma.getModifier() + skill_training(diplomacy_prof_input)
     print("Diplomacy Modifier: " + str(diplomacy_mod))
-    intimidation_mod = ability_scores.cha_mod + skill_training(intimidation_prof_input)
+    intimidation_mod = abilities.Charisma.getModifier() + skill_training(intimidation_prof_input)
     print("Intimidation Modifier: " + str(intimidation_mod))
-    medicine_mod = ability_scores.wis_mod + skill_training(medicine_prof_input)
+    medicine_mod = abilities.Wisdom.getModifier() + skill_training(medicine_prof_input)
     print("Medicine Modifier: " + str(medicine_mod))
-    nature_mod = ability_scores.wis_mod + skill_training(nature_prof_input)
+    nature_mod = abilities.Wisdom.getModifier() + skill_training(nature_prof_input)
     print("Nature Modifier: " + str(nature_mod))
-    occultism_mod = ability_scores.int_mod + skill_training(occultism_prof_input)
+    occultism_mod = abilities.Intelligence.getModifier() + skill_training(occultism_prof_input)
     print("Occultism Modifier: " + str(occultism_mod))
-    performance_mod = ability_scores.cha_mod + skill_training(performance_prof_input)
+    performance_mod = abilities.Charisma.getModifier() + skill_training(performance_prof_input)
     print("Performance Modifier: " + str(performance_mod))
-    religion_mod = ability_scores.wis_mod + skill_training(religion_prof_input)
+    religion_mod = abilities.Wisdom.getModifier() + skill_training(religion_prof_input)
     print("Religion Modifier: " + str(religion_mod))
-    society_mod = ability_scores.int_mod + skill_training(society_prof_input)
+    society_mod = abilities.Intelligence.getModifier() + skill_training(society_prof_input)
     print("Society Modifier: " + str(society_mod))
-    stealth_mod = ability_scores.dex_mod + skill_training(stealth_prof_input)
+    stealth_mod = abilities.Dexterity.getModifier() + skill_training(stealth_prof_input)
     print("Stealth Modifier: " + str(stealth_mod))
-    survival_mod = ability_scores.wis_mod + skill_training(survival_prof_input)
+    survival_mod = abilities.Wisdom.getModifier() + skill_training(survival_prof_input)
     print("Survival Modifier: " + str(survival_mod))
-    thievery_mod = ability_scores.dex_mod + skill_training(thievery_prof_input)
+    thievery_mod = abilities.Dexterity.getModifier() + skill_training(thievery_prof_input)
     print("Thievery Modifier: " + str(thievery_mod))
 
     # Item, temporary, and armor bonuses/penalties should be added later.

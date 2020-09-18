@@ -1,13 +1,14 @@
-import NethysDB
+import nethysdb
 import math
 
-class AbilityScore(NethysDB.NethysDB):
+class AbilityScore(nethysdb.NethysDB):
     def __init__(self, link, SourceBook, Page, score):
         super().__init__(link, SourceBook, Page)
         self.score = score
     
 
     def __repr__(self) -> int:
+        # TODO: idk why requests as a string, it should be an integer
         """Returns the score of the function as a string
 
         Returns:
@@ -21,14 +22,14 @@ class AbilityScore(NethysDB.NethysDB):
         return modifier
 
 
-    def Boost(self):
+    def boost(self):
         if self.score < 18:
             self.score = self.score + 2
         else:
             self.score = self.score + 1
 
 
-    def Flaw(self):
+    def flaw(self):
         self.score = self.score - 2
 
 
@@ -39,10 +40,3 @@ Constitution = AbilityScore("https://2e.aonprd.com/Rules.aspx?ID=70", "Core Rule
 Intelligence = AbilityScore("https://2e.aonprd.com/Rules.aspx?ID=71", "Core RuleBook", 19, 10)
 Wisdom = AbilityScore("https://2e.aonprd.com/Rules.aspx?ID=72", "Core RuleBook", 19, 10)
 Charisma = AbilityScore("https://2e.aonprd.com/Rules.aspx?ID=73", "Core RuleBook", 19, 10)
-
-# Test Function
-Strength.Boost()
-mod = Strength.getModifier()
-print(mod)
-
-print(Strength)

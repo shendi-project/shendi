@@ -1,11 +1,11 @@
 { 
   "ancestries": [
   {
-    "race": "Dwarf",
-    "traits": ["Dwarf", "Humanoid"],
     "NethysUrl": "https://2e.aonprd.com/Ancestries.aspx?ID=1",
     "Source": "Core Rulebook",
     "Page": "35",
+    "race": "Dwarf",
+    "traits": ["Dwarf", "Humanoid"],
     "Description": "Dwarves have a well-earned reputation as a stoic and stern people, ensconced within citadels and cities carved from solid rock. While some see them as dour and humorless crafters of stone and metal, dwarves and those who have spent time among them understand their unbridled zeal for their work, caring far more about quality than quantity. To a stranger, they can seem untrusting and clannish, but to their friends and family, they are warm and caring, their halls filled with the sounds of laughter and hammers hitting anvils. Dwarves are slow to trust those outside their kin, but this wariness is not without reason. Dwarves have a long history of forced exile from ancestral holds and struggles against the depredations of savage foes, especially giants, goblinoids, orcs, and the horrors that dwell deep below the surface. While trust from a dwarf is hard-won, once gained it is as strong as iron. If you want to play a character who is as hard as nails, a stubborn and unrelenting adventurer, with a mix of rugged toughness and deep wisdom—or at least dogged conviction—you should play a dwarf.",
     "YouMight": ["Strive to uphold your personal honor, no matter the situation", "Appreciate quality craftsmanship in all forms and insist upon it for all your gear.", "Don’t waver or back down once you’ve set your mind to something."],
     "OthersProbably": ["See you as stubborn, though whether they see this as an asset or a detriment changes from one person to the next.", "Assume you are an expert in matters related to stonework, mining, precious metals, and gems.", "Recognize the deep connection you have with your family, heritage, and friends."],
@@ -35,11 +35,11 @@
     ]
   },
   {
-    "race": "Elf",
-    "traits": ["Elf", "Humanoid"],
     "NethysUrl": "https://2e.aonprd.com/Ancestries.aspx?ID=2",
     "Source": "Core Rulebook",
     "Page": "39",
+    "race": "Elf",
+    "traits": ["Elf", "Humanoid"],
     "Description": "",
     "YouMight": ["", ""],
     "OthersProbably": ["", ""],
