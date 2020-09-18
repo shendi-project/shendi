@@ -3,10 +3,11 @@ from tkinter import ttk
 import menufunctions as mfx
 import abilities
 import ancestries
+import backgrounds
 import skills
 import ac
 import hitpoints
-import SavingThrow
+import savingthrow
 
 
 root = tk.Tk()
@@ -62,12 +63,12 @@ pc_name_field = tk.Entry(top_frame, width=30).grid(row=0, column=1)
 tk.Label(top_frame, text="Character ancestry:").grid(row=1, column=0)
 ancestry = tk.StringVar()
 # todo: add an empty space FIRST, then the list of races
-races = ancestries.list_of_ancestries
-drop_races = tk.OptionMenu(top_frame, ancestry, *races).grid(row=1, column=1)
+available_races = ancestries.list_of_ancestries
+drop_races = tk.OptionMenu(top_frame, ancestry, *available_races).grid(row=1, column=1)
 # label for background
 tk.Label(top_frame, text="Character background:").grid(row=2, column=0)
 background = tk.StringVar()
-available_backgrounds = ["", "Aerialist", "Animal Wrangler (Athletics)"]
+available_backgrounds = backgrounds.list_of_backgrounds
 drop_background = tk.OptionMenu(top_frame, background, *available_backgrounds).grid(row=2, column=1)
 # label for class
 tk.Label(top_frame, text="Character class:").grid(row=3, column=0)
@@ -151,9 +152,9 @@ tk.Label(mid_frame, text="Fortitude (Con) ").grid(row=5, column=0, columnspan=2)
 tk.Label(mid_frame, text="Reflex (Dex) ").grid(row=6, column=0, columnspan=2)
 tk.Label(mid_frame, text="Will (Wis) ").grid(row=7, column=0, columnspan=2)
 # Mods
-tk.Label(mid_frame, text=SavingThrow.Fortitude).grid(row=5, column=2, columnspan=2)
-tk.Label(mid_frame, text=SavingThrow.Reflex).grid(row=6, column=2, columnspan=2)
-tk.Label(mid_frame, text=SavingThrow.Will).grid(row=7, column=2, columnspan=2)
+tk.Label(mid_frame, text=savingthrow.Fortitude).grid(row=5, column=2, columnspan=2)
+tk.Label(mid_frame, text=savingthrow.Reflex).grid(row=6, column=2, columnspan=2)
+tk.Label(mid_frame, text=savingthrow.Will).grid(row=7, column=2, columnspan=2)
 
 # --- Perception
 tk.Label(mid_frame, text="Perception").grid(row=8, column=0, columnspan=4)

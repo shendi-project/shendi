@@ -1,0 +1,28 @@
+{
+"backgrounds": [
+    {
+        "NethysUrl": "https://2e.aonprd.com/Backgrounds.aspx?ID=1",
+        "Source": "Core Rulebook",
+        "Page": "60",
+        "Background": "Acolyte", 
+        "Traits": [],
+        "Description": "You spent your early days in a religious monastery or cloister. You may have traveled out into the world to spread the message of your religion or because you cast away the teachings of your faith, but deep down you’ll always carry within you the lessons you learned.",
+        "Ability Boost": ["Intelligence", "Wisdom", "Free"],
+        "TrainedSkill": "Religion",
+        "AdditionalLore": "Scribing lore",
+        "Feat": "Student of the Canon"
+    },
+    {
+        "NethysUrl": "https://2e.aonprd.com/Backgrounds.aspx?ID=2",
+        "Source": "Core Rulebook",
+        "Page": "60",
+        "Background": "Acrobat", 
+        "Traits": [],
+        "Description": "In a circus or on the streets, you earned your pay by performing as an acrobat. You might have turned to adventuring when the money dried up, or simply decided to put your skills to better use.",
+        "Ability Boost": ["Strength", "Dexterity", "Free"],
+        "TrainedSkill": "Acrobatics",
+        "AdditionalLore": "Circus lore",
+        "Feat": "Steady Balance"
+    }
+]
+}

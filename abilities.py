@@ -1,13 +1,14 @@
-import NethysDB
+import nethysdb
 import math
 
-class AbilityScore(NethysDB.NethysDB):
+class AbilityScore(nethysdb.NethysDB):
     def __init__(self, link, SourceBook, Page, score):
         super().__init__(link, SourceBook, Page)
         self.score = score
     
 
     def __repr__(self) -> int:
+        # TODO: idk why requests as a string, it should be an integer
         """Returns the score of the function as a string
 
         Returns:
