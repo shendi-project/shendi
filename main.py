@@ -4,6 +4,7 @@ import menufunctions as mfx
 import abilities
 import ancestries
 import backgrounds
+import classesfrompathfinder
 import skills
 import ac
 import hitpoints
@@ -72,7 +73,7 @@ drop_background = tk.OptionMenu(top_frame, PC_background, *available_backgrounds
 # label for class
 tk.Label(top_frame, text="Character class:").grid(row=3, column=0)
 PC_class = tk.StringVar()
-available_classes = ["", "Alchemist", "Barbarian", "Bard"]
+available_classes = classesfrompathfinder.list_of_classes
 drop_class = tk.OptionMenu(top_frame, PC_class, *available_classes).grid(row=3, column=1)
 # Level
 tk.Label(top_frame, text="Level:").grid(row=4, column=0)
@@ -127,17 +128,9 @@ tk.Label(proficiencies_frame, text="Expert").grid(row=2, column=1, padx=10)
 tk.Label(proficiencies_frame, text="Master").grid(row=3, column=1, padx=10)
 
 
-def verify_abi_boosts():
-    """Ok button on the Select Ability Boosts Window.
-    1-Checks if boosts are selected wrong
-    2-Displays an error message
-    """
-    # TODO:
-    # messagebox.showerror('Message title', 'Duplicate ability boosts from the same origin selected')
-    pass
-
-
 def select_abi_boost():
+    abi_free_list = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+    # global drop_ancestry_free1, drop_background_free, drop_class_boost
     # Grabs the dropdown menu on the main window
     get_ancestry = PC_ancestry.get() # TODO: exception when no ancestry is selected
     get_background = PC_background.get()
@@ -150,20 +143,17 @@ def select_abi_boost():
     # ----- Ancestry group
     ancestry_group = tk.LabelFrame(select_abi_window, text="Ancestry")
     ancestry_group.grid(row=1, column=0) # BUG: apparently you cant use .grid on a LabelFrame after a defintion, you need to set it on another line
-    PC_ancestry_boost1 = ancestries.get_boost(get_ancestry, 0)
-    PC_ancestry_boost2 = ancestries.get_boost(get_ancestry, 1)
+    PC_ancestry_boosts = ancestries.get_boosts(get_ancestry)
     PC_ancestry_flaw = ancestries.get_flaw(get_ancestry, 0)
-    tk.Label(ancestry_group, text=PC_ancestry_boost1).grid(row=0, column=0)
-    tk.Label(ancestry_group, text=PC_ancestry_boost2).grid(row=1, column=0)
+    tk.Label(ancestry_group, text=PC_ancestry_boosts[0]).grid(row=0, column=0)
+    tk.Label(ancestry_group, text=PC_ancestry_boosts[1]).grid(row=1, column=0)
     tk.Label(ancestry_group, text=PC_ancestry_flaw, fg="Red").grid(row=0, column=1)
     PC_ancestry_free1 = tk.StringVar()
-    abi_free_list = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
     drop_ancestry_free1 = tk.OptionMenu(ancestry_group, PC_ancestry_free1, *abi_free_list).grid(row=0, column=2)
     
     # Added function for the Human Ancestry
     def add_free_boost():
         PC_ancestry_free2 = tk.StringVar()
-        abi_free_list = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
         drop_ancestry_free2 = tk.OptionMenu(ancestry_group, PC_ancestry_free2, *abi_free_list)
         drop_ancestry_free2.grid(row=1, column=2)
 
@@ -177,32 +167,63 @@ def select_abi_boost():
     background_group = tk.LabelFrame(select_abi_window, text="Background")
     background_group.grid(row=2, column=0)
     PC_background_boost = tk.StringVar()
-    available_backgrounds_boosts = backgrounds.get_boosts(get_background) # TODO: (insert background boost here)"
+    available_backgrounds_boosts = backgrounds.get_boosts(get_background)
     tk.Radiobutton(background_group, text=available_backgrounds_boosts[0], variable = PC_background_boost, value=available_backgrounds_boosts[0]).grid(row=0, column=0)
     tk.Radiobutton(background_group, text=available_backgrounds_boosts[1], variable = PC_background_boost, value=available_backgrounds_boosts[1]).grid(row=1, column=0)
     PC_background_free = tk.StringVar()
-    abi_free_list = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
     drop_background_free = tk.OptionMenu(background_group, PC_background_free, *abi_free_list).grid(row=0, column=1)
-
+ 
     # ----- Class group
     class_group = tk.LabelFrame(select_abi_window, text="Class")
     class_group.grid(row=3, column=0)
-    PC_class_boost = "Strength" # TODO: (insert class boost here)"
-    class_boost = tk.Label(class_group, text=PC_class_boost).grid(row=0,column=0)
-
+    availale_class_boosts = classesfrompathfinder.get_key_ability(get_class)
+    if len(availale_class_boosts) == 1:
+        tk.Label(class_group, text=availale_class_boosts).grid(row=0,column=0)
+        PC_class_boost = availale_class_boosts[0]
+    elif len(availale_class_boosts) >= 1:
+        PC_class_boost = tk.StringVar()
+        drop_class_boost = tk.OptionMenu(class_group, PC_class_boost, *availale_class_boosts).grid(row=0,column=0)
 
     # ----- Free
     tk.Label(select_abi_window, text="Pick four free ability boosts").grid(row=4, column=0)
-    checkbox1 = tk.Checkbutton(select_abi_window, text="Strength").grid(row=5, column=0, sticky = tk.W)
-    checkbox2 = tk.Checkbutton(select_abi_window, text="Dexterity").grid(row=6, column=0, sticky = tk.W)
-    checkbox3 = tk.Checkbutton(select_abi_window, text="Constitution").grid(row=7, column=0, sticky = tk.W)
-    checkbox4 = tk.Checkbutton(select_abi_window, text="Intelligence").grid(row=8, column=0, sticky = tk.W)
-    checkbox5 = tk.Checkbutton(select_abi_window, text="Wisdom").grid(row=9, column=0, sticky = tk.W)
-    checkbox6 = tk.Checkbutton(select_abi_window, text="Charisma").grid(row=10, column=0, sticky = tk.W)
+    str_checkbox = tk.BooleanVar()
+    dex_checkbox = tk.BooleanVar()
+    con_checkbox = tk.BooleanVar()
+    int_checkbox = tk.BooleanVar()
+    wis_checkbox = tk.BooleanVar()
+    cha_checkbox = tk.BooleanVar()
+    
+    tk.Checkbutton(select_abi_window, text="Strength", var=str_checkbox).grid(row=5, column=0, sticky = tk.W)
+    tk.Checkbutton(select_abi_window, text="Dexterity", var=dex_checkbox).grid(row=6, column=0, sticky = tk.W)
+    tk.Checkbutton(select_abi_window, text="Constitution", var=con_checkbox).grid(row=7, column=0, sticky = tk.W)
+    tk.Checkbutton(select_abi_window, text="Intelligence", var=int_checkbox).grid(row=8, column=0, sticky = tk.W)
+    tk.Checkbutton(select_abi_window, text="Wisdom", var=wis_checkbox).grid(row=9, column=0, sticky = tk.W)
+    tk.Checkbutton(select_abi_window, text="Charisma", var=cha_checkbox).grid(row=10, column=0, sticky = tk.W)
 
 
-    # ----- Buttons
-    ok_button = tk.Button(select_abi_window, text="OK", command=verify_abi_boosts()).grid(row=15, column=0)
+    # ----- OK Button
+    def verify_abi_boosts():
+        """Ok button on the Select Ability Boosts Window.
+        1-Checks if boosts are selected wrong
+        2-Displays an error message
+        3-else: get the values
+        """
+        # TODO:
+        # messagebox.showerror('Message title', 'Duplicate ability boosts from the same origin selected')
+
+        get_ancestry_boost = PC_ancestry_free1.get()
+        get_background_free = PC_background_free.get()
+        count_bool_attributes = [str_checkbox.get(), dex_checkbox.get(), con_checkbox.get(), int_checkbox.get(), wis_checkbox.get(), cha_checkbox.get()].count(True)
+        # print(count_bool_attributes)
+        if get_ancestry_boost in PC_ancestry_boosts or get_background_free in available_backgrounds_boosts or count_bool_attributes != 4:
+            tk.messagebox.showerror('Illegal selection', 'An illegal selection ocurred. Please select ability boosts again.')
+
+        # get_class_boost = PC_class_boost.get()  # not used yet, move it to where is used to export the boosts
+        print(get_ancestry_boost, get_background_free, PC_class_boost)
+        # print(str_checkbox.get(), dex_checkbox.get(), con_checkbox.get(), int_checkbox.get(), wis_checkbox.get(), cha_checkbox.get())
+
+
+    ok_button = tk.Button(select_abi_window, text="OK", command=verify_abi_boosts).grid(row=15, column=0)
 
     # # Cancel button not actually useful, just close the window
     

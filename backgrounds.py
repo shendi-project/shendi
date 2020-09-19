@@ -1,6 +1,7 @@
 import json
 import nethysdb
 
+# I don't know if this is useful, but for now I am leaving it here just in case
 class Background(nethysdb.NethysDB):
     def __init__(self, link, sourcebook, page, name, traits, description, ability_boost1, ability_boost2, trained_skill, additional_lore, feat):
         super().__init__(link, sourcebook, page)
