@@ -19,6 +19,28 @@ with open('data/backgrounds.json') as f:
 
 list_of_backgrounds = []
 
+def get_boosts(background):
+    """Returns a list of the ability boosts of the background
+
+    Args:
+        background (string): a string of the list_of_backgrounds list
+
+    Raises:
+        Exception: if the background is not found in the list_of_backgrounds list
+
+    Returns:
+        list: list of ability boosts (but not the free)
+    """
+    if background in list_of_backgrounds:
+        index = list_of_backgrounds.index(background)
+        boosts = []
+        boosts.append(data['backgrounds'][index]['Ability Boost'][0])
+        boosts.append(data['backgrounds'][index]['Ability Boost'][1])
+        return boosts
+    else:
+        raise Exception("Background not found in the list_of_backgrounds")
+
+
 for background in data['backgrounds']:
     link = background['NethysUrl']
     sourcebook = background['Source']
@@ -37,3 +59,4 @@ for background in data['backgrounds']:
 
 if __name__ == "__main__":
     print(list_of_backgrounds)
+    get_boosts('Acolyte')
