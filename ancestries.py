@@ -1,6 +1,7 @@
 import json
 import nethysdb
 
+# I don't know if this is useful, but for now I am leaving it here just in case
 class Ancestry(nethysdb.NethysDB):
     def __init__(self, link, SourceBook, Page, name, description, YouMight, OthersProbably, PhysicalDescription, Society, AlignmentAndReligion, Adventurers, Names, Hitpoints, Size, Speed, AbilityBoost1, AbilityBoost2, AbilityFlaw):
         super().__init__(link, SourceBook, Page)
@@ -51,10 +52,13 @@ for ancestry in data['ancestries']:
     list_of_ancestries.append(ancestry['race'])
 
 
-def get_boost(ancestry, n):
+def get_boosts(ancestry):
     if ancestry in list_of_ancestries:
         index = list_of_ancestries.index(ancestry)
-        return data['ancestries'][index]['Ability Boosts'][n]
+        boosts = []
+        boosts.append(data['ancestries'][index]['Ability Boosts'][0])
+        boosts.append(data['ancestries'][index]['Ability Boosts'][1])
+        return boosts
     else:
         raise Exception("Ancestry not found in the list_of_ancestries")
 
