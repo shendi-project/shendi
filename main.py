@@ -139,7 +139,7 @@ def verify_abi_boosts():
 
 def select_abi_boost():
     # Grabs the dropdown menu on the main window
-    get_ancestry = PC_ancestry.get()
+    get_ancestry = PC_ancestry.get() # TODO: exception when no ancestry is selected
     get_background = PC_background.get()
     get_class = PC_class.get()
 
@@ -150,7 +150,6 @@ def select_abi_boost():
     # ----- Ancestry group
     ancestry_group = tk.LabelFrame(select_abi_window, text="Ancestry")
     ancestry_group.grid(row=1, column=0) # BUG: apparently you cant use .grid on a LabelFrame after a defintion, you need to set it on another line
-    # TODO: Call first ancestry boost of get_ancestry()    
     PC_ancestry_boost1 = ancestries.get_boost(get_ancestry, 0)
     PC_ancestry_boost2 = ancestries.get_boost(get_ancestry, 1)
     PC_ancestry_flaw = ancestries.get_flaw(get_ancestry, 0)
@@ -178,10 +177,9 @@ def select_abi_boost():
     background_group = tk.LabelFrame(select_abi_window, text="Background")
     background_group.grid(row=2, column=0)
     PC_background_boost = tk.StringVar()
-    PC_background_boost1 = "Constitution" # TODO: (insert background boost here)"
-    PC_background_boost2 = "Wisdom" # TODO: (insert background boost here)"
-    tk.Radiobutton(background_group, text=PC_background_boost1, variable = PC_background_boost, value=PC_background_boost1).grid(row=0, column=0)
-    tk.Radiobutton(background_group, text=PC_background_boost2, variable = PC_background_boost, value=PC_background_boost2).grid(row=1, column=0)
+    available_backgrounds_boosts = backgrounds.get_boosts(get_background) # TODO: (insert background boost here)"
+    tk.Radiobutton(background_group, text=available_backgrounds_boosts[0], variable = PC_background_boost, value=available_backgrounds_boosts[0]).grid(row=0, column=0)
+    tk.Radiobutton(background_group, text=available_backgrounds_boosts[1], variable = PC_background_boost, value=available_backgrounds_boosts[1]).grid(row=1, column=0)
     PC_background_free = tk.StringVar()
     abi_free_list = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
     drop_background_free = tk.OptionMenu(background_group, PC_background_free, *abi_free_list).grid(row=0, column=1)
