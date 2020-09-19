@@ -4,3 +4,4 @@
 /workspace.xml
 /__pycache__/
 /.pytest_cache/
+/.vscode/
