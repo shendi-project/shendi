@@ -51,10 +51,25 @@ for ancestry in data['ancestries']:
     list_of_ancestries.append(ancestry['race'])
 
 
+def get_boost(ancestry, n):
+    if ancestry in list_of_ancestries:
+        index = list_of_ancestries.index(ancestry)
+        return data['ancestries'][index]['Ability Boosts'][n]
+    else:
+        raise Exception("Ancestry not found in the list_of_ancestries")
+
+
+def get_flaw(ancestry, n):
+    if ancestry in list_of_ancestries:
+        index = list_of_ancestries.index(ancestry)
+        return data['ancestries'][index]['Ability Flaw'][n]
+    else:
+        raise Exception("Ancestry not found in the list_of_ancestries")
+
+
 def main():
     print(list_of_ancestries)      
 
+
 if __name__ == '__main__':
     main()
-
-    
