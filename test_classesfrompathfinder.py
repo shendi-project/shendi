@@ -2,7 +2,7 @@ import classesfrompathfinder
 
 
 def test_list_of_classes():
-    assert classesfrompathfinder.list_of_classes == ['Alchemist', 'Barbarian']
+    assert classesfrompathfinder.list_of_classes == ['Alchemist', 'Barbarian', 'Champion']
 
 
 def test_get_key_ability():

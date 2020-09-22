@@ -96,19 +96,47 @@ tk.Label(ability_frame, text="Intelligence").grid(row=4, column=0, pady=10)
 tk.Label(ability_frame, text="Wisdom").grid(row=5, column=0, pady=10)
 tk.Label(ability_frame, text="Charisma").grid(row=6, column=0, pady=10)
 # Ability scores
-tk.Label(ability_frame, text=abilities.Strength.score).grid(row=1, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=abilities.Dexterity.score).grid(row=2, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=abilities.Constitution.score).grid(row=3, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=abilities.Intelligence.score).grid(row=4, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=abilities.Wisdom.score).grid(row=5, column=1, padx=20, pady=10)
-tk.Label(ability_frame, text=abilities.Charisma.score).grid(row=6, column=1, padx=20, pady=10)
+STR_score = tk.StringVar()
+DEX_score = tk.StringVar()
+CON_score = tk.StringVar()
+INT_score = tk.StringVar()
+WIS_score = tk.StringVar()
+CHA_score = tk.StringVar()
+
+STR_score.set(abilities.Strength.score)
+DEX_score.set(abilities.Dexterity.score)
+CON_score.set(abilities.Constitution.score)
+INT_score.set(abilities.Intelligence.score)
+WIS_score.set(abilities.Wisdom.score)
+CHA_score.set(abilities.Charisma.score)
+
+STR_abi_label = tk.Label(ability_frame, textvariable=STR_score).grid(row=1, column=1, padx=20, pady=10)
+DEX_abi_label = tk.Label(ability_frame, textvariable=DEX_score).grid(row=2, column=1, padx=20, pady=10)
+CON_abi_label = tk.Label(ability_frame, textvariable=CON_score).grid(row=3, column=1, padx=20, pady=10)
+INT_abi_label = tk.Label(ability_frame, textvariable=INT_score).grid(row=4, column=1, padx=20, pady=10)
+WIS_abi_label = tk.Label(ability_frame, textvariable=WIS_score).grid(row=5, column=1, padx=20, pady=10)
+CHA_abi_label = tk.Label(ability_frame, textvariable=CHA_score).grid(row=6, column=1, padx=20, pady=10)
 # Ability mods
-tk.Label(ability_frame, text=abilities.Strength.getModifier()).grid(row=1, column=2, pady=10)
-tk.Label(ability_frame, text=abilities.Dexterity.getModifier()).grid(row=2, column=2, pady=10)
-tk.Label(ability_frame, text=abilities.Constitution.getModifier()).grid(row=3, column=2, pady=10)
-tk.Label(ability_frame, text=abilities.Intelligence.getModifier()).grid(row=4, column=2, pady=10)
-tk.Label(ability_frame, text=abilities.Wisdom.getModifier()).grid(row=5, column=2, pady=10)
-tk.Label(ability_frame, text=abilities.Charisma.getModifier()).grid(row=6, column=2, pady=10)
+STR_mod = tk.StringVar()
+DEX_mod = tk.StringVar()
+CON_mod = tk.StringVar()
+INT_mod = tk.StringVar()
+WIS_mod = tk.StringVar()
+CHA_mod = tk.StringVar()
+
+STR_mod.set(abilities.Strength.getModifier())
+DEX_mod.set(abilities.Dexterity.getModifier())
+CON_mod.set(abilities.Constitution.getModifier())
+INT_mod.set(abilities.Intelligence.getModifier())
+WIS_mod.set(abilities.Wisdom.getModifier())
+CHA_mod.set(abilities.Charisma.getModifier())
+
+STR_mod_label = tk.Label(ability_frame, textvariable=STR_mod).grid(row=1, column=2, pady=10)
+DEX_mod_label = tk.Label(ability_frame, textvariable=DEX_mod).grid(row=2, column=2, pady=10)
+CON_mod_label = tk.Label(ability_frame, textvariable=CON_mod).grid(row=3, column=2, pady=10)
+INT_mod_label = tk.Label(ability_frame, textvariable=INT_mod).grid(row=4, column=2, pady=10)
+WIS_mod_label = tk.Label(ability_frame, textvariable=WIS_mod).grid(row=5, column=2, pady=10)
+CHA_mod_label = tk.Label(ability_frame, textvariable=CHA_mod).grid(row=6, column=2, pady=10)
 
 # Class DC
 # TODO: <<<<<<<<<<<<<<<<<<<<<< I don't like how this is showed >>>>>>>>>>>>>>>>>>>>>
@@ -149,7 +177,7 @@ def select_abi_boost():
     tk.Label(ancestry_group, text=PC_ancestry_boosts[1]).grid(row=1, column=0)
     tk.Label(ancestry_group, text=PC_ancestry_flaw, fg="Red").grid(row=0, column=1)
     PC_ancestry_free1 = tk.StringVar()
-    drop_ancestry_free1 = tk.OptionMenu(ancestry_group, PC_ancestry_free1, *abi_free_list).grid(row=0, column=2)
+    tk.OptionMenu(ancestry_group, PC_ancestry_free1, *abi_free_list).grid(row=0, column=2)
     
     # Added function for the Human Ancestry
     def add_free_boost():
@@ -171,18 +199,18 @@ def select_abi_boost():
     tk.Radiobutton(background_group, text=available_backgrounds_boosts[0], variable = PC_background_boost, value=available_backgrounds_boosts[0]).grid(row=0, column=0)
     tk.Radiobutton(background_group, text=available_backgrounds_boosts[1], variable = PC_background_boost, value=available_backgrounds_boosts[1]).grid(row=1, column=0)
     PC_background_free = tk.StringVar()
-    drop_background_free = tk.OptionMenu(background_group, PC_background_free, *abi_free_list).grid(row=0, column=1)
+    tk.OptionMenu(background_group, PC_background_free, *abi_free_list).grid(row=0, column=1)
  
     # ----- Class group
     class_group = tk.LabelFrame(select_abi_window, text="Class")
     class_group.grid(row=3, column=0)
-    availale_class_boosts = classesfrompathfinder.get_key_ability(get_class)
-    if len(availale_class_boosts) == 1:
-        tk.Label(class_group, text=availale_class_boosts).grid(row=0,column=0)
-        PC_class_boost = availale_class_boosts[0]
-    elif len(availale_class_boosts) >= 1:
+    available_class_boosts = classesfrompathfinder.get_key_ability(get_class)
+    if len(available_class_boosts) == 1:
+        tk.Label(class_group, text=available_class_boosts).grid(row=0,column=0)
+        PC_class_boost = available_class_boosts[0]
+    elif len(available_class_boosts) >= 1:
         PC_class_boost = tk.StringVar()
-        drop_class_boost = tk.OptionMenu(class_group, PC_class_boost, *availale_class_boosts).grid(row=0,column=0)
+        tk.OptionMenu(class_group, PC_class_boost, *available_class_boosts).grid(row=0,column=0)
 
     # ----- Free
     tk.Label(select_abi_window, text="Pick four free ability boosts").grid(row=4, column=0)
@@ -208,22 +236,103 @@ def select_abi_boost():
         2-Displays an error message
         3-else: get the values
         """
-        # TODO:
-        # messagebox.showerror('Message title', 'Duplicate ability boosts from the same origin selected')
-
+        #Grab the selected values.
         get_ancestry_boost = PC_ancestry_free1.get()
+        get_radiobutton_background = PC_background_boost.get()
         get_background_free = PC_background_free.get()
-        count_bool_attributes = [str_checkbox.get(), dex_checkbox.get(), con_checkbox.get(), int_checkbox.get(), wis_checkbox.get(), cha_checkbox.get()].count(True)
-        # print(count_bool_attributes)
+        if len(available_class_boosts) == 1:
+            get_class_boost = available_class_boosts[0]
+        elif len(available_class_boosts) > 1:
+            get_class_boost = PC_class_boost.get()
+        else:
+            return Exception("Could not get the class boost.")
+
+        bool_attributes = [str_checkbox.get(), dex_checkbox.get(), con_checkbox.get(), int_checkbox.get(), wis_checkbox.get(), cha_checkbox.get()]
+
+        count_bool_attributes = bool_attributes.count(True)
         if get_ancestry_boost in PC_ancestry_boosts or get_background_free in available_backgrounds_boosts or count_bool_attributes != 4:
             tk.messagebox.showerror('Illegal selection', 'An illegal selection ocurred. Please select ability boosts again.')
 
-        # get_class_boost = PC_class_boost.get()  # not used yet, move it to where is used to export the boosts
-        print(get_ancestry_boost, get_background_free, PC_class_boost)
-        # print(str_checkbox.get(), dex_checkbox.get(), con_checkbox.get(), int_checkbox.get(), wis_checkbox.get(), cha_checkbox.get())
+        print(PC_ancestry_boosts[0], PC_ancestry_boosts[1], get_ancestry_boost, get_radiobutton_background, get_background_free, get_class_boost)
+        print(bool_attributes)
+
+        boosts = [PC_ancestry_boosts[0], PC_ancestry_boosts[1], get_ancestry_boost, get_radiobutton_background, get_background_free, get_class_boost]
+
+        for boost in boosts:
+            if boost == 'Strength':
+                abilities.Strength.boost()
+            elif boost == 'Dexterity':
+                abilities.Dexterity.boost()
+            elif boost == 'Constitution':
+                abilities.Constitution.boost()
+            elif boost == 'Intelligence':
+                abilities.Intelligence.boost()
+            elif boost == 'Wisdom':
+                abilities.Wisdom.boost()
+            elif boost == 'Charisma':
+                abilities.Charisma.boost()
+            else:
+                return Exception("Ability boost not found")
+
+        flaws = [PC_ancestry_flaw]
+        for flaw in flaws:
+            if flaw == 'Strength':
+                abilities.Strength.flaw()
+            elif flaw == 'Dexterity':
+                abilities.Dexterity.flaw()
+            elif flaw == 'Constitution':
+                abilities.Constitution.flaw()
+            elif flaw == 'Intelligence':
+                abilities.Intelligence.flaw()
+            elif flaw == 'Wisdom':
+                abilities.Wisdom.flaw()
+            elif flaw == 'Charisma':
+                abilities.Charisma.flaw()
+            else:
+                return Exception("Ability flaw not found")
+        
+        if bool_attributes[0] == True:
+            abilities.Strength.boost()
+        if bool_attributes[1] == True:
+            abilities.Dexterity.boost()
+        if bool_attributes[2] == True:
+            abilities.Constitution.boost()
+        if bool_attributes[3] == True:
+            abilities.Intelligence.boost()
+        if bool_attributes[4] == True:
+            abilities.Wisdom.boost()
+        if bool_attributes[5] == True:
+            abilities.Charisma.boost()
+            
+
+        print(abilities.Strength.score)
+        print(abilities.Dexterity.score)
+        print(abilities.Constitution.score)
+        print(abilities.Intelligence.score)
+        print(abilities.Wisdom.score)
+        print(abilities.Charisma.score)
+        select_abi_window.update()
+        # select_abi_window.destroy()
+
+        # update ability scores
+        STR_score.set(abilities.Strength.score)
+        DEX_score.set(abilities.Dexterity.score)
+        CON_score.set(abilities.Constitution.score)
+        INT_score.set(abilities.Intelligence.score)
+        WIS_score.set(abilities.Wisdom.score)
+        CHA_score.set(abilities.Charisma.score)
+    
+        # update ability mods
+        STR_mod.set(abilities.Strength.getModifier())
+        DEX_mod.set(abilities.Dexterity.getModifier())
+        CON_mod.set(abilities.Constitution.getModifier())
+        INT_mod.set(abilities.Intelligence.getModifier())
+        WIS_mod.set(abilities.Wisdom.getModifier())
+        CHA_mod.set(abilities.Charisma.getModifier())
 
 
     ok_button = tk.Button(select_abi_window, text="OK", command=verify_abi_boosts).grid(row=15, column=0)
+
 
     # # Cancel button not actually useful, just close the window
     
