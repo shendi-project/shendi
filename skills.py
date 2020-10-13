@@ -57,6 +57,7 @@ perception_proficiency = "trained"
 # survival
 # thievery
 
+
 def main():
     # Using the console to input until someone figures out how buttons work.
     char_level = int(input("Enter your character's level: "))
@@ -68,9 +69,9 @@ def main():
     master = 6 + char_level
     legendary = 8 + char_level
 
-
     # Converts user input into a variable I can use to calculate their skill modifier.
     # There's probably a better way to do this.
+
     def skill_training(skill_prof_input):
         if skill_prof_input == "U":
             skill_prof = untrained
@@ -82,8 +83,9 @@ def main():
             skill_prof = master
         elif skill_prof_input == "L":
             skill_prof = legendary
+        else:
+            raise Exception("Proficiencyt not selected")
         return skill_prof
-
 
     # Using the console to input until someone figures out how buttons work, Electric Boogaloo.
     acrobatics_prof_input = input("Pick Acrobatics proficiency: U | T | E | M | L : ")
@@ -139,6 +141,7 @@ def main():
 
     # Item, temporary, and armor bonuses/penalties should be added later.
     # We still need to implement Lore skills.
+
 
 if __name__ == "__main__":
     main()
